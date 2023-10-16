@@ -99,17 +99,17 @@ function checkerase () {
         basic.clearScreen()
     }
 }
-let t_current_ms = 0
-let t_previous_ms = 0
 let next_iteration_microsec = 0
-let current_samples = 0
 let logging = false
 let imagesAnimation: Image[] = []
-let samples_per_activity_long = 0
 let samples_per_activity = 0
 let activity_id_long = 0
 let recording_period_milliseconds = 0
 let current_activity = 0
+let samples_per_activity_long = 0
+let current_samples = 0
+let t_previous_ms = 0
+let t_current_ms = 0
 current_activity = 1
 recording_period_milliseconds = 20
 activity_id_long = 5

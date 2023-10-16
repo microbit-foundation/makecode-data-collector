@@ -1,40 +1,28 @@
+# MakeCode project to collect accelerometer data
 
-> Open this page at [https://jaustin.github.io/ml-data-collector-2/](https://jaustin.github.io/ml-data-collector-2/)
+Intructions:
 
-## Use as Extension
+- Press button A to change the "activity type", values from 1 to 7
+    - Each button press increases the activity number by one, and loops over from 7 to 1
+- Press buttons A+B to start logging the acceleromter data
+    - A countdown will start with speaker beeps and an animation on the display
+    - At the 4th beep the logging will start
+    - Activities 1 to 4 (both inclusive) will record data for 30 seconds, activities 5 to 7 for 80 seconds
+    - During data recording the display will blink
+    - When the data recording is done a sound expression will be played and the display will stop blinking
+- When the data log is full a skull will appear on the display
+- To erase the data logging data follow this sequence:
+    - Press button B
+    - Press the reset button
+    - A heart will appear on the display, release button B and press button A
+    - A skull will appear on the display for 500 ms, maintain button A pressed down
+    - A chessboard will appear on the display, the data logging data will now be erased
+    - After this the programme will continue as normal
 
-This repository can be added as an **extension** in MakeCode.
+Due to memory limitations this programme can only reliable record 4 activities from 1 to 4, or 2 activities from 5 to 7.
 
-* open [https://makecode.microbit.org/](https://makecode.microbit.org/)
-* click on **New Project**
-* click on **Extensions** under the gearwheel menu
-* search for **https://github.com/jaustin/ml-data-collector-2** and import
-
-## Edit this project
-
-To edit this repository in MakeCode.
-
-* open [https://makecode.microbit.org/](https://makecode.microbit.org/)
-* click on **Import** then click on **Import URL**
-* paste **https://github.com/jaustin/ml-data-collector-2** and click import
-
-#### Metadata (used for search, rendering)
-
-* for PXT/microbit
-<script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
-
-
-
-> Open this page at [https://microbit-carlos.github.io/makecode-data-collector/](https://microbit-carlos.github.io/makecode-data-collector/)
-
-## Use as Extension
-
-This repository can be added as an **extension** in MakeCode.
-
-* open [https://makecode.microbit.org/](https://makecode.microbit.org/)
-* click on **New Project**
-* click on **Extensions** under the gearwheel menu
-* search for **https://github.com/microbit-carlos/makecode-data-collector** and import
+During the data recording, the data is initial stored in RAM, and when the recording time is done it moves that data from RAM to the data logging storage.
+As this is only done at the end, if the micro:bit is reset or the battery disconnected during data recording, the data for that activity will be lost.
 
 ## Edit this project
 
@@ -44,7 +32,13 @@ To edit this repository in MakeCode.
 * click on **Import** then click on **Import URL**
 * paste **https://github.com/microbit-carlos/makecode-data-collector** and click import
 
-#### Metadata (used for search, rendering)
+## Running locally
 
-* for PXT/microbit
-<script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
+```
+git clone https://github.com/microbit-carlos/makecode-data-collector
+cd makecode-data-collector
+npm install pxt
+npx pxt target microbit
+npx pxt install
+PXT_FORCE_LOCAL=1 PXT_NODOCKER=1 PXT_COMPILE_SWITCHES=csv---mbcodal npx pxt
+```

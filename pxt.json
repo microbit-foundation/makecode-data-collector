@@ -1,6 +1,6 @@
 {
-    "name": "ML Data Collector",
-    "description": "",
+    "name": "Data Collector",
+    "description": "MakeCode project to collect accelerometer data",
     "dependencies": {
         "core": "*",
         "radio": "*",
@@ -12,9 +12,6 @@
         "main.ts",
         "README.md"
     ],
-    "testFiles": [
-        "test.ts"
-    ],
     "targetVersions": {
         "target": "6.0.19",
         "targetId": "microbit"
@@ -22,5 +19,5 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "blocksprj"
+    "preferredEditor": "tsprj"
 }
