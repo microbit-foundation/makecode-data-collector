@@ -7,7 +7,7 @@ Activities 1 to 4 record 30 seconds of accelerometer data, and activities 5 to 7
 Up to four 30 seconds activities, or two 80 second activities can be recorded.
 
 
-## Intructions
+## Instructions
 
 - Press button A to change the "activity type", values from 1 to 7
     - Each button press increases the activity number by one, and loops over from 7 to 1
@@ -28,12 +28,13 @@ As moving the data from RAM to data log storage is only done at the end, if the 
 ### Erase the data
 
 To erase the data logging data follow this sequence:
-- Press button B
-- Press the reset button
-- A heart will appear on the display, release button B and press button A
+- Press down button B and keep it pressed
+- Press and release the reset button
+- A heart will appear on the display as the programme starts, release button B and press down button A
 - A skull will appear on the display for 500 ms, maintain button A pressed down
 - A chessboard will appear on the display, the data logging data will now be erased
-- After this the programme will continue as normal
+- Button A can be released
+- After the log deletion the programme will continue as normal
 
 
 ## Edit this project

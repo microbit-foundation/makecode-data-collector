@@ -33,14 +33,14 @@ input.onButtonPressed(Button.A, function () {
     }
 })
 function startActivity (activityNumber: number, totalSamples: number) {
+    logging = true
     plotActivity(current_activity)
     current_samples = 0
     buffer_a.fill(0);
 buffer_x.fill(0);
 buffer_y.fill(0);
 buffer_z.fill(0);
-logging = true
-    t_previous_ms = input.runningTime()
+t_previous_ms = input.runningTime()
     while (logging) {
         while (input.runningTime() < t_previous_ms + recording_period_ms) {
         	
@@ -63,9 +63,9 @@ t_previous_ms = t_current_ms
                 datalogger.createCV("z", buffer_z.getNumber(NumberFormat.Int16LE, index2 * 2))
                 )
             }
-            logging = false
             plotActivity(current_activity)
             music.play(music.builtinPlayableSoundEffect(soundExpression.spring), music.PlaybackMode.UntilDone)
+            logging = false
         }
         basic.pause(10)
     }
@@ -73,12 +73,7 @@ t_previous_ms = t_current_ms
 input.onButtonPressed(Button.AB, function () {
     if (!(logging)) {
         countdown()
-        if (current_activity < activity_id_long) {
-            startActivity(current_activity, samples_per_activity)
-        } else {
-            startActivity(current_activity, samples_per_activity_long)
-        }
-        plotActivity(current_activity)
+        logging = true
     }
 })
 function checkerase () {
@@ -99,21 +94,18 @@ function checkerase () {
 }
 let logging = false
 let imagesAnimation: Image[] = []
-let samples_per_activity = 0
-let activity_id_long = 0
 let recording_period_ms = 0
 let current_activity = 0
-let samples_per_activity_long = 0
-let t_current_ms = 0
-let t_previous_ms = 0
 let current_samples = 0
+let t_previous_ms = 0
+let t_current_ms = 0
 current_activity = 1
 recording_period_ms = 20
-activity_id_long = 5
+let activity_id_long = 5
 let recording_time_seconds = 30
 let recording_time_seconds_long = 80
-samples_per_activity = recording_time_seconds * 1000 / recording_period_ms
-samples_per_activity_long = recording_time_seconds_long * 1000 / recording_period_ms
+let samples_per_activity = recording_time_seconds * 1000 / recording_period_ms
+let samples_per_activity_long = recording_time_seconds_long * 1000 / recording_period_ms
 imagesAnimation = [images.createImage(`
     . . . . .
     . . . . .
@@ -145,6 +137,15 @@ loops.everyInterval(500, function () {
                     led.plotBrightness(d_x, d_y, 255)
                 }
             }
+        }
+    }
+})
+basic.forever(function () {
+    if (logging) {
+        if (current_activity < activity_id_long) {
+            startActivity(current_activity, samples_per_activity)
+        } else {
+            startActivity(current_activity, samples_per_activity_long)
         }
     }
 })
