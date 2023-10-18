@@ -25,6 +25,9 @@ So, the total time before the activity looks "done" on the micro:bit (the displa
 
 As moving the data from RAM to data log storage is only done at the end, if the micro:bit is reset or the battery disconnected during data recording, the data for that activity will be lost.
 
+While data collection is not taking place, it is safe to reset the micro:bit or completely remove power.
+Any data logged so far will is saved and more data can be logged after reset (within the total limits previously mentioned).
+
 ### Erase the data
 
 To erase the data logging data follow this sequence:

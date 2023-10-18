@@ -34,7 +34,7 @@ input.onButtonPressed(Button.A, function () {
 })
 function startActivity (activityNumber: number, totalSamples: number) {
     logging = true
-    plotActivity(current_activity)
+    plotActivity(activityNumber)
     current_samples = 0
     buffer_a.fill(0);
 buffer_x.fill(0);
@@ -63,9 +63,9 @@ t_previous_ms = t_current_ms
                 datalogger.createCV("z", buffer_z.getNumber(NumberFormat.Int16LE, index2 * 2))
                 )
             }
-            plotActivity(current_activity)
-            music.play(music.builtinPlayableSoundEffect(soundExpression.spring), music.PlaybackMode.UntilDone)
+            music.play(music.builtinPlayableSoundEffect(soundExpression.spring), music.PlaybackMode.InBackground)
             logging = false
+            plotActivity(activityNumber)
         }
         basic.pause(10)
     }
