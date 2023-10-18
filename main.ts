@@ -33,7 +33,6 @@ input.onButtonPressed(Button.A, function () {
     }
 })
 function startActivity (activityNumber: number, totalSamples: number) {
-    datalogger.log(datalogger.createCV("a", "activity" + activityNumber))
     plotActivity(current_activity)
     current_samples = 0
     buffer_a.fill(0);
@@ -55,6 +54,7 @@ t_previous_ms = t_current_ms
         current_samples += 1
         if (current_samples >= totalSamples) {
             led.toggle(4, 0)
+            datalogger.log(datalogger.createCV("a", "activity" + activityNumber))
             for (let index2 = 0; index2 <= totalSamples - 1; index2++) {
                 datalogger.log(
                 datalogger.createCV("a", buffer_a.getNumber(NumberFormat.Int16LE, index2 * 2)),
