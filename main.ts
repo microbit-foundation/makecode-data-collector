@@ -41,10 +41,9 @@ buffer_x.fill(0);
 buffer_y.fill(0);
 buffer_z.fill(0);
 logging = true
-    next_iteration_microsec = input.runningTimeMicros()
-    t_previous_ms = next_iteration_microsec / 1000
+    t_previous_ms = input.runningTime()
     while (logging) {
-        while (next_iteration_microsec > input.runningTimeMicros()) {
+        while (input.runningTime() < t_previous_ms + recording_period_ms) {
         	
         }
         t_current_ms = input.runningTime()
@@ -52,8 +51,7 @@ logging = true
 buffer_x.setNumber(NumberFormat.Int16LE, current_samples * 2, input.acceleration(Dimension.X))
 buffer_y.setNumber(NumberFormat.Int16LE, current_samples * 2, input.acceleration(Dimension.Y))
 buffer_z.setNumber(NumberFormat.Int16LE, current_samples * 2, input.acceleration(Dimension.Z))
-next_iteration_microsec = 1000 * (t_current_ms + recording_period_milliseconds)
-        t_previous_ms = t_current_ms
+t_previous_ms = t_current_ms
         current_samples += 1
         if (current_samples >= totalSamples) {
             led.toggle(4, 0)
@@ -99,24 +97,23 @@ function checkerase () {
         basic.clearScreen()
     }
 }
-let next_iteration_microsec = 0
 let logging = false
 let imagesAnimation: Image[] = []
 let samples_per_activity = 0
 let activity_id_long = 0
-let recording_period_milliseconds = 0
+let recording_period_ms = 0
 let current_activity = 0
 let samples_per_activity_long = 0
-let current_samples = 0
-let t_previous_ms = 0
 let t_current_ms = 0
+let t_previous_ms = 0
+let current_samples = 0
 current_activity = 1
-recording_period_milliseconds = 20
+recording_period_ms = 20
 activity_id_long = 5
 let recording_time_seconds = 30
 let recording_time_seconds_long = 80
-samples_per_activity = recording_time_seconds / (recording_period_milliseconds / 1000)
-samples_per_activity_long = recording_time_seconds_long / (recording_period_milliseconds / 1000)
+samples_per_activity = recording_time_seconds * 1000 / recording_period_ms
+samples_per_activity_long = recording_time_seconds_long * 1000 / recording_period_ms
 imagesAnimation = [images.createImage(`
     . . . . .
     . . . . .

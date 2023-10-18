@@ -1,3 +1,9 @@
+# Others
+.tool-versions
+package.json
+package-lock.json
+.vscode/*
+
 # MakeCode
 built
 node_modules
@@ -10,3 +16,6 @@ _site
 *.tgz
 .header.json
 .simstate.json
+
+# OS
+.DS_Store
